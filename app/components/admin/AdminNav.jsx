@@ -17,7 +17,7 @@ const AdminNav = () => {
         <div>
               <div className='flex items-center text-center justify-center py-1  gap-2.5 '>
               <img className='rounded-full h-6 w-6 sm:w-10 sm:h-10' src="https://tse3.mm.bing.net/th/id/OIP.Euvv_xvBss3sUzphQSQN-AHaI1?pid=Api&P=0&h=180" alt="" />
-             <h4 className='text-xs sm:text-[18x]'>Preet</h4>
+             <h4 className='text-xs sm:text-[18x]'>Admin</h4>
              
         </div>
 

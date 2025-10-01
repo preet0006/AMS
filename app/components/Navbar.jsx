@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Bell } from "@deemlol/next-icons";
 import Notification from './Notification';
 import { getServerSession } from "next-auth/next";
@@ -8,9 +8,11 @@ const Navbar = async () => {
 
     const session = await getServerSession(authOptions);
 
-    console.log(session.user.id)
+    // console.log(session.user.id)
 
     const userId = session.user.id
+  
+  
     
   return (
 

@@ -1,8 +1,5 @@
 
-import Navbar from "../components/Navbar";
-
-
-
+import Providers from "./provider";
 
 export default function RootLayout({ children }) {
   return (
@@ -10,24 +7,30 @@ export default function RootLayout({ children }) {
       <body
         className={` antialiased`}
       >
+      
+
+       
         
         <div className=" flex max-w-[1800px] m-auto h-screen ">
             
-            <div className="w-full m-auto h-dvh">
-            
+            <div className="w-full z-50 m-auto h-dvh">
+             <Providers>
+
+          
               {children}
+                 </Providers>
             </div>
-            <div className="  h-screen hidden sm:block w-full  sm:w-1/2">
-              <img className=" object-cover w-full h-full" src="./doc1.webp" alt="" />
+            <div className=" z-10 h-screen hidden sm:block w-full  sm:w-1/2">
+              <img className=" object-cover brightness-90 w-full h-full" src="/dmr.jpg" alt="" />
               
 
             </div>
             
                  
-
               
         </div>
-       
+
+ 
       
      
        

@@ -5,7 +5,7 @@ const GoogleUserSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      
     },
     email: {
       type: String,
@@ -18,6 +18,12 @@ const GoogleUserSchema = new mongoose.Schema(
     phoneNumber:{
       type:String,
     },
+
+     formDetails:{
+      type:String,
+      enum:["true","false"],
+      default:"false"
+     },
 
      user: {
       type: mongoose.Schema.Types.ObjectId,

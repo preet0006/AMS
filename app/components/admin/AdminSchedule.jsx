@@ -24,7 +24,7 @@ const [popUpData,setPopUpData]=useState({})
 
   
 
-console.log(popUpData)
+// console.log(popUpData)
   
 // const tableData = [
 //   {
@@ -101,7 +101,7 @@ console.log(popUpData)
                       
                 
                     <img className="w-[40px] rounded-full h-[40px] object-cover hidden sm:table-cell" src={row.image}  alt="" />
-                    <span>rfnf</span>
+                    <span>{row.applicant.fullName}</span>
                         </div>
 
                     

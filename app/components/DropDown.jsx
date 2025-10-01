@@ -10,7 +10,7 @@ const DropDown = ({data,setIsSelectedPhysician}) => {
 
   const [isOpen,setIsOpen,]=useState(false)
   const [selectedData,setSelectedData]=useState({})
-   console.log(selectedData)
+  //  console.log(selectedData)
 
   const drop = useRef();
 
@@ -32,10 +32,10 @@ const DropDown = ({data,setIsSelectedPhysician}) => {
 
 
   return (
-    <div   ref={drop} className='flex mt-1 flex-col'>
+    <div   ref={drop} className='flex mt-1  flex-col'>
 
-      <div  onClick={()=>setIsOpen(!isOpen)}  className=' border border-gray-300 rounded-xl outline-none  relative flex py-1 gap-2 w-full text-center  items-center pl-3'>
-       <img className='sm:w-9 sm:h-9 h-6 w-6  object-cover rounded-full object-top' src={selectedData?.image || 'https://c8.alamy.com/comp/KHY945/doctor-cartoon-character-KHY945.jpg'} alt="" />
+      <div  onClick={()=>setIsOpen(!isOpen)}  className=' border cursor-pointer border-gray-400 rounded-xl outline-none  relative flex py-[5px] min-w-[300px] lg:min-w-[470px] px-6  gap-1 w-full text-center  items-center pl-3'>
+       <img className='sm:w-9 sm:h-9 h-6 w-6  object-cover rounded-full object-top' src={selectedData?.image || '/dc.jpg'} alt="" />
          <span className='text-center'>{selectedData?.name || 'Choose your Physician'}</span>
          
          <div className='absolute right-4'>

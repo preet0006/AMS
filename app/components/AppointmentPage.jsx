@@ -3,17 +3,16 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/authgoogle'
 import { docs } from '@/constant'
 import DoctorDrop from './DoctorDrop'
+import Test from './Test'
 
 
 
 const AppointmentPage = async() => {
     
   const session = await getServerSession(authOptions)
-  console.log(session);
+  // console.log(session);
   
-  // if(!session){
-  //   return 
-  // }
+  
 
   
 
@@ -37,13 +36,24 @@ const AppointmentPage = async() => {
 
             <div className=''>
             <span className=''>Reason for Appointment</span>
-            <input className='w-full py-6 mt-2  rounded-[11px] border-gray-700 border ' type="text" name="reason"  placeholder='' id="" />
+
+          <textarea
+              name="reason"
+              rows={3} 
+              placeholder="Enter reason for appointment"
+                className="w-full mt-2 px-4 py-2 rounded-[11px] border border-gray-700 text-start resize-none"
+               />
 
             </div>
 
               <div className=''>
-            <span className=''>Additional comments</span>
-            <input className='w-full py-6 mt-2 rounded-[11px] border-gray-700 border' type="text" name="additionalcomments" placeholder='' id="" />
+              <span className=''>Additional comments</span>
+            <textarea
+              name="additionalcomments"
+              rows={3} 
+              placeholder="Enter if specific problem "
+              className="w-full mt-2 px-4 py-2 rounded-[11px] border border-gray-700 text-start resize-none"
+               />
 
             </div>
           
@@ -51,42 +61,26 @@ const AppointmentPage = async() => {
           </div>
 
             
-          <div className='mt-1 '>
+          {/* <div className='mt-1 '>
 
         
             <span className=''>Expected AppointMent Date</span>
             <input className='w-full mt-2 py-[10px]  rounded-[11px] border-gray-700 border' type="date" name="schedueledDate" id="" />
              </div>
 
-     <div className='w-full flex justify-center items-center bg-blue-800 rounded-[11px] mt-4'>
+        <div className='w-full flex justify-center items-center bg-blue-800 rounded-[11px] mt-4'>
             <button type="submit" className='py-2 '>Submit and Continue</button>
 
-        </div>
-            
+        </div> */}
+
+        
+         <Test/>          
 
         </div>
-
-   
-
         </form>
 
-       
-
-    
-     
+      
         </div>
-
-        
-        
-        
-
-
-
-     
-
-     
-   
-
         </div>
   )
 }

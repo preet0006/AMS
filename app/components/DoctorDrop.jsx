@@ -27,10 +27,10 @@ const DropDown = () => {
     
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="border border-gray-600 rounded-xl outline-none relative flex py-2 gap-2 w-full text-center items-center pl-3 cursor-pointer"
+        className="border border-gray-600 rounded-xl outline-none relative flex py-1 gap-2 w-full text-center items-center pl-3 cursor-pointer"
       >
         <img
-          className=" w-6 h-6 sm:w-9 sm:h-9  object-cover rounded-full object-top"
+          className=" w-6 h-6 sm:w-8 sm:h-8  object-cover rounded-full object-top"
           src={
             selectedData?.image ||
             "https://c8.alamy.com/comp/KHY945/doctor-cartoon-character-KHY945.jpg"

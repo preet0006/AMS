@@ -6,7 +6,7 @@ import { sendAdminData } from '@/controllers/adminController'
 const Page = async({params}) => {
 
   const result = await sendAdminData()
-  console.log(result)
+  // console.log(result)
 
    
 let { findAppointMents, stats } = result.data
@@ -16,9 +16,10 @@ stats = JSON.parse(JSON.stringify(stats))
 
 
 
-  if(!result){
-    console.log("loading set true as data cant fetched")
-  }
+  // if(!result){
+  //   console.log("loading set true as data cant fetched")
+  //   return 
+  // }
 
   
    

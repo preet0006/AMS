@@ -14,7 +14,7 @@ const AdminPopUp = dynamic(() => import("./AdminPopUp"), {
 
 const AppointInfo = ({data}) => {
 
-console.log(data)
+// console.log(data)
 
 const [stats,setStats]=useState(data)
 

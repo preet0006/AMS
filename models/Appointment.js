@@ -7,6 +7,8 @@ const appointMentSchema =  new mongoose.Schema({
      additionalcomments:{type:String,required:true},
      cancelMessage:{type:String},
 
+     
+
      scheduledTime: {
        type: String,
        match: /^(0?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM)$/i, 
@@ -16,7 +18,7 @@ const appointMentSchema =  new mongoose.Schema({
      status: {
        type: String,
        enum: ["pending", "approved", "completed", "cancelled"],
-      default: "pending",
+       default: "pending",
      },
    
      applicant:{

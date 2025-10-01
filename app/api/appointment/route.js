@@ -3,11 +3,13 @@ import { connectDb } from "@/lib/connection";
 import { NextResponse } from "next/server";
 import { authOptions } from "@/lib/authgoogle";
 import { getServerSession } from "next-auth";
+import GoogleUser from "@/models/GoogleUser";
 
 
 export async function POST(req) {
     try {
       await connectDb()
+
      const session =  await getServerSession(authOptions);
 
      if(!session){
@@ -16,9 +18,18 @@ export async function POST(req) {
       { status: 500 }
     );
 
+
+
     }
 
       const googleUserId = session.user.id
+
+      const user= await GoogleUser.findById(googleUserId);
+
+      if(user?.formDetails !=="true"){
+      return NextResponse.redirect(`http://localhost:3000/addDetails/${googleUserId}`);
+      } 
+      
  
       
       const formData = await req.formData()
@@ -31,9 +42,10 @@ export async function POST(req) {
              googleUserId
         });
 
-          return NextResponse.json(response, {
-          status: response.success ? 201 : 400,
-         });
+           if(response.success){
+          return NextResponse.redirect('http://localhost:3000/confirm');
+         }
+        
 
     } catch (error) {
         console.error("server error")

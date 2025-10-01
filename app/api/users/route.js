@@ -3,6 +3,7 @@ import { addUserDetails } from "@/controllers/userController";
 import { uploadToCloudinary } from "@/lib/cloudinary";
 import { authOptions } from "@/lib/authgoogle";
 import { getServerSession } from "next-auth";
+import GoogleUser from "@/models/GoogleUser";
 
 
 export const runtime = "nodejs";
@@ -22,7 +23,15 @@ export async function POST(req) {
     }
     
     const userId = session.user.id
+
+      const user= await GoogleUser.findById(userId);
     
+        if(user?.formDetails ==="true"){
+        return NextResponse.redirect(`http://localhost:3000`);
+          } 
+    
+    
+
     console.log(userId)
    
 

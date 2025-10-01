@@ -5,6 +5,8 @@ import GoogleUser from "@/models/GoogleUser";
 import { MedicalRecord } from "@/models/MedicalRecords";
 import { User } from "@/models/User";
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
+
 
 
 export const addUserDetails = async(req,res)=>{
@@ -19,7 +21,14 @@ try {
 
     
     
-        const verify =  await User.findOne({"phoneNumber":personalInfo.phone});
+        const verify =  await User.findOne(
+          {
+           $or:[
+           {"phoneNumber":personalInfo.phone},
+           { email: personalInfo.email }
+          ]
+           }
+        );
     
         if(verify){
              return { success: false, message: "User already exists" };
@@ -47,7 +56,7 @@ try {
      //user id  here are added to google user id 
 
        const googleUser = await GoogleUser.findByIdAndUpdate(userId,
-        {user:newUser._id},{new:true})
+        {user:newUser._id, formDetails:"true"},{new:true})
 
      
         const newMedicalRecord = await MedicalRecord.create({
@@ -63,6 +72,13 @@ try {
     
         newUser.medicalRecord = newMedicalRecord._id;
         await newUser.save();
+
+          const updatedUser = await GoogleUser.findByIdAndUpdate(
+                userId, 
+             { formDetails: "true" }, 
+            { new: true } 
+        );
+        
         
         
         return {
@@ -136,7 +152,7 @@ try {
       const {_id,fullName,email,phoneNumber} = userId;
 
        
-       if(!type || !userId){
+       if(!type){
         return { success: false, message: "one or more field is missing"};
        }
 
@@ -179,10 +195,12 @@ try {
       if(type ==="granted" && googleUser){
         await pusher.trigger(`user-${googleUser._id}`, "appointmentGranted", {
           googleUserId:googleUser._id,
-          fullName,email,phoneNumber,time
+          time
         })
       }
   
+      
+
     const appointment = await Appointment.findByIdAndUpdate(
            appointmentId,updateData, { new: true }
       );
@@ -205,3 +223,36 @@ try {
         console.log(error)
     }
    }
+
+
+ export const getStatus = async (id) => {
+    console.log("Received ID:", id);
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        console.log("Invalid ID");
+        return { success: false, message: "Invalid user ID" };
+    }
+
+    try {
+        
+        const user = await GoogleUser.findById(id);
+        if (!user) {
+            return { success: false, message: "User not found" };
+        }
+
+        console.log(user)
+
+        const appointment = await Appointment.findOne({ applicant: user.user._id });
+        if (!appointment) {
+            return { success: false, message: "No appointment found" };
+        }
+        console.log(appointment)
+
+        const { doctorName, scheduledTime } = appointment
+        return { success: true, data: { doctorName, scheduledTime } };
+
+    } catch (error) {
+        console.error(error);
+        return { success: false, message: "Internal server error" };
+    }
+};

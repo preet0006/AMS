@@ -1,7 +1,12 @@
 import SignUp from '@/app/components/authentications/SignUp'
+
 import React from 'react'
 
+
 const page = () => {
+
+  
+
   return (
     <>
    
@@ -25,7 +30,7 @@ const page = () => {
 
          <div className=' flex  justify-center items-center max-w-96 sm:max-w-xl px-3 sm:px-12 w-full'>
         
-        <SignUp/>
+        <SignUp />
         
 
       </div>
