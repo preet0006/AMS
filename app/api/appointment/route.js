@@ -27,7 +27,8 @@ export async function POST(req) {
       const user= await GoogleUser.findById(googleUserId);
 
       if(user?.formDetails !=="true"){
-      return NextResponse.redirect(`http://localhost:3000/addDetails/${googleUserId}`);
+         return NextResponse.redirect(new URL(`/addDetails/${googleUserId}`, req.url));
+
       } 
       
  
@@ -43,7 +44,7 @@ export async function POST(req) {
         });
 
            if(response.success){
-          return NextResponse.redirect('http://localhost:3000/confirm');
+          return NextResponse.redirect(new URL("/confirm", req.url));
          }
         
 

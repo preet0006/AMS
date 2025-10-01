@@ -27,7 +27,8 @@ export async function POST(req) {
       const user= await GoogleUser.findById(userId);
     
         if(user?.formDetails ==="true"){
-        return NextResponse.redirect(`http://localhost:3000`);
+       return NextResponse.redirect(new URL("/", req.url));
+
           } 
     
     
