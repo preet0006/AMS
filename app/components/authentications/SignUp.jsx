@@ -6,7 +6,8 @@ import { signIn } from 'next-auth/react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from "next/navigation";
 import { useSession } from 'next-auth/react'
-import { debounce } from 'lodash'
+import { debounce, flatMap } from 'lodash'
+import OtpDrop from './OtpDrop'
 
 
 
@@ -17,7 +18,9 @@ const SignUp = () => {
          const[ email,setEmail] = useState("");
           const [otp, setOtp] = useState(Array(6).fill("")); 
           const [verificationType,setVerificationType]=useState("")
-          const [loading,setLoading]=useState(false)
+          const [loading,setLoading]=useState(false);
+
+          const [otpErr,setOtpErr]=useState(false)
           
        
           const [emailerr,setEmailErr]=useState(false)
@@ -71,7 +74,7 @@ const SignUp = () => {
         
               const otpCode = otp.join("");
           
-            if (!otpCode || otpCode.length < 6 || otp.includes("")) {
+              if (!otpCode || otpCode.length < 6 || otp.includes("")) {
               
                 setLoading(false)
                 return;
@@ -89,15 +92,18 @@ const SignUp = () => {
           
               if (res?.error) {
                 console.error("NextAuth signIn failed:", res.error);
-                setLoading(false)
+                setOtpErr(true)
+                
                 return;
               }
           
-             
+             setOtpErr(false)
              router.push("/");
            } catch (err) {
              console.log(err, "in verify");
-             setLoading(false)
+           
+           } finally{
+            setLoading(false)
            }
          };
            
@@ -116,6 +122,11 @@ const SignUp = () => {
     <div className='flex flex-col text-sm sm:text-base   justify-center items-center   w-full'>
       <div id="recaptcha-container"></div>
        
+       {
+        otpErr&& (
+          <OtpDrop setOtpErr={setOtpErr}/>
+        )
+       }
 
        <div  className='flex  gap-2 text-sm sm:text-base  mt-6 flex-col w-full'>
       <span >Name</span>

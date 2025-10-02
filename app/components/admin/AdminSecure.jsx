@@ -5,6 +5,7 @@ import { X } from "@deemlol/next-icons";
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'
 
+
 const AdminSecure = ({verificationType,setOtp,otp,setShow,handleVerifyOtp,email}) => {
     
 
@@ -177,15 +178,19 @@ const AdminSecure = ({verificationType,setOtp,otp,setShow,handleVerifyOtp,email}
                     
                     <button onClick={()=>router.push('/admin')} className='bg-blue-800 cursor-pointer text-white font-semibold w-full max-w-xl py-3'>Enter Admin Panel</button>
                     ):(
-                     <button onClick={()=>{ handleVerifyOtp()}} 
-                      className='bg-blue-800 flex items-center justify-center cursor-pointer text-white font-semibold w-full max-w-xl py-3'>
-                         {
-                          loading?(
-                             <div className="w-5 h-5 flex items-center justify-center border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                          ):"Enter"
-                          }
-                        
-                        </button>
+                <button onClick={async () => { setLoading(true);        
+                   await handleVerifyOtp();  setLoading(false);      
+                  }}
+                      disabled={loading}
+                       className='bg-blue-800 flex items-center justify-center cursor-pointer text-white font-semibold w-full max-w-xl py-3'
+>
+                 {loading ? (
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  ) : (
+                     "Enter"
+                      )}
+                    </button>
+
 
        
                     )}
