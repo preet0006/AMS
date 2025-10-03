@@ -1,5 +1,7 @@
-import Image from "next/image";
+
 import Providers from "./provider";
+
+
 
 export default function RootLayout({ children }) {
   return (
@@ -20,8 +22,12 @@ export default function RootLayout({ children }) {
               {children}
                  </Providers>
             </div>
-            <div className=" z-10 h-screen hidden sm:block w-full  sm:w-1/2">
-              <Image className=" object-cover brightness-90 w-full h-full" src="/dmr.jpg"  alt="" />
+            <div className=" z-10 h-screen hidden sm:block w-full relative  sm:w-1/2">
+
+
+              <img className=" object-cover brightness-90 w-full h-full"   src='/dmr.jpg'  alt="" />
+
+              
               
 
             </div>

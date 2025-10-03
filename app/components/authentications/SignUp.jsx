@@ -37,6 +37,11 @@ const SignUp = () => {
           
           const router = useRouter()
        
+
+          const session = useSession();
+
+        
+          
       
        
        
@@ -109,9 +114,16 @@ const SignUp = () => {
            
            
           const verify =(type)=>{
-        if(loading) return
-         setVerificationType(type)
-        if (type === "email") handleSendOtp()
+          if(type == "admin"){
+            setVerificationType(type);
+            setShow(true)
+          } else {
+            if(loading) return
+           setVerificationType(type)
+           if (type === "email") handleSendOtp()
+
+          }
+         
           }
 
 
@@ -167,8 +179,8 @@ const SignUp = () => {
         }
        </button>
 
-         <div className='absolute right-0 mt-36 sm:mt-30 text-gray-400'>
-          <button onClick={()=>verify("admin")}>Admin</button>
+         <div className='absolute  right-0 mt-36 sm:mt-30 text-gray-400'>
+          <button className='cursor-pointer' onClick={()=>verify("admin")}>Admin</button>
 
           {
             show && (

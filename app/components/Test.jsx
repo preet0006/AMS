@@ -45,7 +45,7 @@ const Test = () => {
               selected={date}
               onChange={(d) => setDate(d)}
                placeholderText="Select a date"
-               className="w-full py-2 px-4 rounded-lg border border-gray-700 text-white"
+               className="w-full cursor-pointer py-2 px-4 rounded-lg border border-gray-700 text-white"
 
                 calendarClassName="!bg-gray-900 !text-white !border !border-gray-700 !rounded-xl !shadow-lg"
 
@@ -70,7 +70,7 @@ const Test = () => {
             
 
              <div onClick={()=>setLoading(true)} className='w-full flex justify-center items-center bg-blue-800 rounded-[11px] mt-4'>
-            <button onClick={()=>setLoading(true)} type="submit" className='py-2 '>
+            <button onClick={()=>setLoading(true)} type="submit" className='py-2  cursor-pointer'>
               {
                 loading?(
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

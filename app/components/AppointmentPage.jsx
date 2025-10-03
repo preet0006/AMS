@@ -9,7 +9,7 @@ import Test from './Test'
 
 const AppointmentPage = async() => {
     
-  const session = await getServerSession(authOptions)
+  // const session = await getServerSession(authOptions)
   // console.log(session);
   
   

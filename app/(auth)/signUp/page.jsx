@@ -1,6 +1,7 @@
 import SignUp from '@/app/components/authentications/SignUp'
 
 import React from 'react'
+import Image from 'next/image'
 
 
 const page = () => {
@@ -15,7 +16,7 @@ const page = () => {
           <div className='w-full sm:hidden mt-12 flex justify-center items-center'>
 
          
-         <img className='h-32 w-32' src="./dc12.png" alt="" />
+         <Image width={128} height={128} className='h-32 w-32' src="/dc12.png" alt="" />
           </div>
 
        

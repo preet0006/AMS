@@ -9,14 +9,21 @@ export async function middleware(req) {
 
   const { pathname } = req.nextUrl;
 
+ 
   if (pathname.startsWith("/signUp")) {
     return NextResponse.next();
   }
 
+  
+  if (pathname.match(/\.(png|jpg|jpeg|gif|svg|ico|json)$/)) {
+    return NextResponse.next();
+  }
 
+  
   if (!token) {
     return NextResponse.redirect(new URL("/signUp", req.url));
   }
+
   return NextResponse.next();
 }
 
@@ -25,4 +32,3 @@ export const config = {
     "/((?!api|_next/static|_next/image|favicon.ico|admin).*)",
   ],
 };
-
