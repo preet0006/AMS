@@ -54,9 +54,9 @@ const [stats,setStats]=useState(data)
            <span className=''><Zap size={36} color="#87CEEB" /></span>
            <h6 className='py-1'>{stats?.approved}</h6>
             </div>
-          <p className=' text-xs hidden  sm:block sm:text-base mt-5'>Total number of scheduled appointments</p>
+          <p className=' text-xs hidden  sm:block sm:text-base mt-5'>Total number of pending appointments</p>
 
-           <p className=' text-xs sm:hidden  mt-5'> Scheduled Appointments</p>
+           <p className=' text-xs sm:hidden  mt-5'> Pending Appointments</p>
         </div>
 
 
@@ -65,8 +65,8 @@ const [stats,setStats]=useState(data)
           <span><ZapOff size={36} color="#FF0000" /></span>
            <h6 className='py-1'>{stats.cancelled}</h6>
             </div>
-          <p className=' text-xs hidden sm:block sm:text-base mt-5'>Total number of scheduled appointments</p>
-           <p className=' text-xs sm:hidden  mt-5'> Scheduled Appointments</p>
+          <p className=' text-xs hidden sm:block sm:text-base mt-5'>Total number of cancelled appointments</p>
+           <p className=' text-xs sm:hidden  mt-5'> Cancelled Appointments</p>
         </div>
 
         </div>
